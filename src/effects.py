@@ -71,3 +71,27 @@ class FeedBackComb(Effect):
             self.buffer_index = 0
 
         return result
+
+
+class OneZeroFilter(Effect):
+    def __init__(self, b0: float, b1: float):
+        self.b0 = b0
+        self.b1 = b1
+        self.prev = 0.0
+
+    def process(self, sample):
+        result = self.b0 * sample + self.b1 * self.prev
+        self.prev = sample
+        return result
+
+
+# class OnePoleFilter(Effect):
+#     def __init__(self, b0:float, b1: float):
+#         self.b0 = b0
+#         self.b1 = b1
+#         self.prev = 0.0
+
+#     def process(self, sample):
+#         result =
+#         self.prev = result
+#         return result
